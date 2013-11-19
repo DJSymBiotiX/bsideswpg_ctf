@@ -18,7 +18,7 @@ I was greeted with "Yo, gimme something!", which led me to assume it was looking
 
 \# ./yo something
 
-"Dawg, you're *lame*!". I figured I was getting somewhere, so I kept giving it input.
+"Dawg, you're \*lame\*!". I figured I was getting somewhere, so I kept giving it input.
 
 After 2 argments, all it ever returns is "Yo, you're deluging me!". I decided to look up the word "deluging"
 which means "flooding" or something like that, which led me to believe this was some sort of buffer overflow.
