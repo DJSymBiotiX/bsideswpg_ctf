@@ -9,11 +9,17 @@ yo
 As with a few other people, I apparently put too much thought into the solution for this first challenge.
 I opened it up in vim and noticed that it was an x86\_64 linux binary, so I instinctively threw it on one
 of my linux boxes and ran it there.
+
 When I ran it:
+
 \# ./yo
+
 I was greeted with "Yo, gimme something!", which led me to assume it was looking for some input.
+
 \# ./yo something
+
 "Dawg, you're *lame*!". I figured I was getting somewhere, so I kept giving it input.
+
 After 2 argments, all it ever returns is "Yo, you're deluging me!". I decided to look up the word "deluging"
 which means "flooding" or something like that, which led me to believe this was some sort of buffer overflow.
 After trying to give it obscenely large arguments with no success, I decided to open it up in vim again.
@@ -57,7 +63,9 @@ based on the file type. My solution can be found in this github project as "toot
 tapdat
 ------
 Another image puzzle. [It's a little too wide to show here directly]
+
 https://ctf.bsideswpg.ca/challs/tapdat.png
+
 Being familiar with Linear Feedback Shift Registers from my university days, I already knew what had to be done here.
 You "tap" into the bits on the far right that have the lines connected to them and apply the circuit logic to them, you then prepend
 the result to the beginning of the big sequence, as every other bit shifts one to the right.
@@ -65,9 +73,13 @@ First off, I decided to figure out which bit corresponded to which segment as I 
 I didn't know how many time I would need to pull this shift off, so instead of drawing the segments out by hand I decided to write a python script to do it for me.
 This script can be found in this repo as "tapdat.py" along with a file called "binary" which was all the bits from the image put into a file for the script.
 In any case, it turns out you only need to shift it once and you are presented with the password in a seven segment display kind of way which I will paste here cause of the tricky "W"
+
   _       _           _               _                   _           _           _   _   _       _
+
  |\_|     |\_| |   | | |\_      |     | | | | | |    \_|     |\_  |\_| |   |\_  |\_      |\_| |   |\_| |   | |
+
  | |. _  |   |\_  |\_|  \_|  _  |\_| |\_| |\_| |\_| |\_  |\_|  _   \_| | | |   |   |\_   _  | | |\_| | | |   | |
+
 As it turns out, the problem in itself was incorrect. The image shows XNOR gates, but it should be showing XOR gates.
 With XNOR gates, it outputs a 1 as the first bit (which creates that A. character), but it should actually be a 0 as the dot is not part of the solution.
 
@@ -95,7 +107,9 @@ cryptic
 -------
 Ah yes, more encryption problems.
 You are given a shell script with the following line:
+
 "openssl enc -e -aes-128-ofb -K $encryption\_key -iv 0000000000000000 < "$1" > "$1".enc"
+
 You are also given "message1", "message1.enc", "message2", "message2.enc" and "flag.enc".
 The assumption here is that the line in the shell script was used to create the enc versions of the message files, as well as the flag file.
 The thing to note here was the algorithm used: "-aes-128-ofb". I assumed there was some sort of known plaintext attack on this cipher as you are given
@@ -137,7 +151,7 @@ dos program with the password being outputted.
 asshat
 ------
 Another image challenge.
-You are given the following image (inappropriately resized for your pleasure):
+You are given the following image:
 <img src="https://ctf.bsideswpg.ca/challs/asshat.jpg" style="width: 20%; height: 50%" />
 First clue seemed obvious. Figure out what colour #DABCB4 is. I opened up the inspector, and changed the colour of the background to the color noted
 on the card (figured this was the best place to do it, since I could have the image reference right beside it).
